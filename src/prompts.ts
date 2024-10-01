@@ -57,3 +57,32 @@ async function addRole() {
     [title, salary, department_id]
   );
 }
+
+async function addEmployee() {
+  const { first_name, last_name, role_id, manager_id } = await inquirer.prompt([
+    {
+      type: "input",
+      name: "first_name",
+      message: "Enter the employee's first name:",
+    },
+    {
+      type: "input",
+      name: "last_name",
+      message: "Enter the employee's last name:",
+    },
+    {
+      type: "input",
+      name: "role_id",
+      message: "Enter the employee's role ID:",
+    },
+    {
+      type: "input",
+      name: "manager_id",
+      message: "Enter the employee's manager ID (leave blank if none):",
+    },
+  ]);
+  await db.query(
+    "INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)",
+    [first_name, last_name, role_id, manager_id || null]
+  );
+}
