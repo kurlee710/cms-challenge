@@ -14,3 +14,13 @@ async function viewRoles() {
   );
   console.table(result.rows);
 }
+
+async function viewEmployees() {
+  const result =
+    await db.query(`SELECT e.id, e.first_name, e.last_name, r.title AS job_title, d.name AS department, r.salary, m.first_name AS manager_first_name, m.last_name AS manager_last_name
+          FROM employees e
+          LEFT JOIN roles r ON e.role_id = r.id
+          LEFT JOIN departments d ON r.department_id = d.id
+          LEFT JOIN employees m ON e.manager_id = m.id`);
+  console.table(result.rows);
+}
