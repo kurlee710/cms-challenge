@@ -86,3 +86,30 @@ async function addEmployee() {
     [first_name, last_name, role_id, manager_id || null]
   );
 }
+
+async function updateEmployeeRole() {
+  const employeesResult = await db.query("SELECT * FROM employees");
+  const employees: Employee[] = employeesResult.rows;
+
+  const { employee_id, new_role_id } = await inquirer.prompt([
+    {
+      type: "list",
+      name: "employee_id",
+      message: "Select an employee to update:",
+      choices: employees.map((emp) => ({
+        name: `${emp.first_name} ${emp.last_name}`,
+        value: emp.id,
+      })),
+    },
+    {
+      type: "input",
+      name: "new_role_id",
+      message: "Enter the new role ID for the employee:",
+    },
+  ]);
+
+  await db.query("UPDATE employees SET role_id = $1 WHERE id = $2", [
+    new_role_id,
+    employee_id,
+  ]);
+}
