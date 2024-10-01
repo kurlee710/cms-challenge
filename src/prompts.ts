@@ -33,3 +33,27 @@ async function addDepartment() {
   });
   await db.query("INSERT INTO departments (name) VALUES ($1)", [name]);
 }
+
+async function addRole() {
+  const { title, salary, department_id } = await inquirer.prompt([
+    {
+      type: "input",
+      name: "title",
+      message: "Enter the title of the role:",
+    },
+    {
+      type: "input",
+      name: "salary",
+      message: "Enter the salary for the role:",
+    },
+    {
+      type: "input",
+      name: "department_id",
+      message: "Enter the department ID for the role:",
+    },
+  ]);
+  await db.query(
+    "INSERT INTO roles (title, salary, department_id) VALUES ($1, $2, $3)",
+    [title, salary, department_id]
+  );
+}
