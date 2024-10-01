@@ -11,3 +11,9 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD || "", // Use the DB_PASSWORD environment variable
   port: 5432,
 });
+
+const query = (text: string, params?: any[]) => pool.query(text, params);
+
+export default {
+  query,
+};
