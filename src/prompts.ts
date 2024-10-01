@@ -24,3 +24,12 @@ async function viewEmployees() {
           LEFT JOIN employees m ON e.manager_id = m.id`);
   console.table(result.rows);
 }
+
+async function addDepartment() {
+  const { name } = await inquirer.prompt({
+    type: "input",
+    name: "name",
+    message: "Enter the name of the department:",
+  });
+  await db.query("INSERT INTO departments (name) VALUES ($1)", [name]);
+}
