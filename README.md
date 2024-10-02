@@ -43,11 +43,9 @@ The **Employee Database Management System** is a command-line application design
 5. Create a `.env` file in the root directory and configure your PostgreSQL connection settings:
 
    ```
-   DB_HOST=your_database_host
+   DB_NAME=your_database_name
    DB_USER=your_database_user
    DB_PASSWORD=your_database_password
-   DB_NAME=your_database_name
-   DB_PORT=your_database_port
    ```
 
 6. Set up the PostgreSQL database using the provided schema (See [Database Schema](#database-schema)).
@@ -135,7 +133,7 @@ The database is structured into three tables: **departments**, **roles**, and **
 
 ## Walkthrough Video
 
-[Link to walkthrough video demonstrating the application functionality]()
+[Link to walkthrough video demonstrating the application functionality](https://drive.google.com/file/d/1SJ3Yp1_5AqU5vEJmiouLkcmdCadUBid6/view?usp=sharing)
 
 ## License
 
